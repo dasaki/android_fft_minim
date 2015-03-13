@@ -5,6 +5,10 @@ Fast Fourier Transform algorithms from Processing's Minim audio library, adapted
 
 Tested and built with Processing 2.0b8 (android mode).
 
+EDIT:
+March 13th 2015
+After some minor corrections I'va managed to make this work in my Nexus 4, compiling the sketch with the app: APDE - Android Processing IDE (https://play.google.com/store/apps/details?id=com.calsignlabs.apde&hl=en). After installing APDE, just create a new folder called "android_fft_minim" in the sd card's "Sketchbook" folder and copy all the repo's files there. Run the APDE and open and play the android_fft_minim sketch. Have fun!
+
 More info here: http://therandomlab.blogspot.com.es/2013/05/fft-audio-frequency-analysis-with.html
 
 Basically adapted some of the minim analysis code to use the FFT with android audio recorder.

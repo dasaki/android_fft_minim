@@ -95,9 +95,8 @@ void setup() {
     
     if (aRecStarted) {
         bufferReadResult = audioRecord.read(buffer, 0, bufferSize);
-        // verify that is power of two
-        if (bufferReadResult % 2 != 0) bufferReadResult = 2 << (int)(log(bufferReadResult)/log(2)); 
-       
+        // compute nearest higher power of two
+       bufferReadResult = getHigherP2(bufferReadResult);
         fft = new FFT(bufferReadResult, RECORDER_SAMPLERATE);
         fftRealArray = new float[bufferReadResult]; 
         drawScaleW = drawScaleW*(float)displayWidth/(float)fft.freqToIndex(maxFreqToDraw);
@@ -213,4 +212,17 @@ void draw() {
 void stop() {
   audioRecord.stop();
   audioRecord.release();
+}
+
+// compute nearest higher power of two
+// see: graphics.stanford.edu/~seander/bithacks.html
+int getHigherP2(int val)
+{
+  val--;
+  val |= val >> 1;
+  val |= val >> 2;
+  val |= val >> 8;
+  val |= val >> 16;
+  val++;
+  return(val);
 }

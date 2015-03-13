@@ -53,7 +53,7 @@ FFT         fft              = null;
 float[]     fftRealArray     = null;
 int         mainFreq         = 0;
 
-float       drawScaleH       = 1.5; // TODO: calculate the drawing scales
+float       drawScaleH       = 4.5; // TODO: calculate the drawing scales
 float       drawScaleW       = 1.0; // TODO: calculate the drawing scales
 int         drawStepW        = 2;   // display only every Nth freq value
 float       maxFreqToDraw    = 2500; // max frequency to represent graphically
@@ -69,7 +69,7 @@ void setup() {
   if (minBufferSize == AudioRecord.ERROR_BAD_VALUE)  {
     RECORDER_SAMPLERATE = 8000; // forced by the android emulator
     MAX_FREQ = RECORDER_SAMPLERATE/2;
-    bufferSize =  2 << (int)(log(RECORDER_SAMPLERATE)/log(2)-1);// buffer size must be power of 2!!!
+    bufferSize =  getHigherP2(RECORDER_SAMPLERATE);// buffer size must be power of 2!!!
     // the buffer size determines the analysis frequency at: RECORDER_SAMPLERATE/bufferSize
     // this might make trouble if there is not enough computation power to record and analyze
     // a frequency. In the other hand, if the buffer size is too small AudioRecord will not initialize
